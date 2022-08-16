@@ -2,7 +2,12 @@ using System;
 
 namespace TDDMicroExercises.TirePressureMonitoringSystem
 {
-    public class Sensor
+    public interface ISensor
+    {
+        double PopNextPressurePsiValue();
+    }
+
+    public class Sensor : ISensor
     {
         //
         // The reading of the pressure value from the sensor is simulated in this implementation.

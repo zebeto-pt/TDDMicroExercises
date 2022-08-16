@@ -3,7 +3,17 @@ using System.Web;
 
 namespace TDDMicroExercises.UnicodeFileToHtmlTextConverter
 {
-    public class UnicodeFileToHtmlTextConverter
+    public interface IUnicodeFileToHtmlTextConverter
+    {
+        string ConvertToHtml();
+    }
+
+    public interface IIextReader
+    {
+        string OpenText();
+    }
+
+    public class UnicodeFileToHtmlTextConverter : IUnicodeFileToHtmlTextConverter
     {
         private readonly string _fullFilenameWithPath;
 
