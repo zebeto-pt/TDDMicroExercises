@@ -6,17 +6,12 @@ namespace TDDMicroExercises.Tests
     [TestFixture]
     public class TelemetrySystemTests
     {
-        [Test]
-        public void TelemetrySystem_Scenario_ExpectedResult()
+        private TelemetryClient telemetry;
+
+        [SetUp]
+        public void SetUp()
         {
-            // arrange
-
-
-            // act
-
-
-            // assert
-
+            telemetry = new TelemetryClient();
         }
 
         [Test]
@@ -24,9 +19,6 @@ namespace TDDMicroExercises.Tests
         [TestCase("")]
         public void TelemetrySystem_Connect_ConnectionStringIsNullOrEmpty(string msg)
         {
-            // arrange
-            var telemetry = new TelemetryClient();
-
             // act, assert
             Assert.That(() => telemetry.Connect(msg), Throws.ArgumentNullException);
         }
@@ -34,9 +26,6 @@ namespace TDDMicroExercises.Tests
         [Test]
         public void TelemetrySystem_Connect_IsTrueOrFalse()
         {
-            // arrange
-            var telemetry = new TelemetryClient();
-
             // act
             telemetry.Connect("connection string");
             var result = telemetry.OnlineStatus;
@@ -48,15 +37,42 @@ namespace TDDMicroExercises.Tests
         [Test]
         public void TelemetrySystem_Disconnect_ExpectedResult()
         {
-            // arrange
-            var telemetry = new TelemetryClient();
-
             // act
             telemetry.Disconnect();
             var result = telemetry.OnlineStatus;
 
             // assert
             Assert.IsFalse(result);
+        }
+
+        [Test]
+        [TestCase(null)]
+        [TestCase("")]
+        public void TelemetrySystem_SendMessage_IsNullOrEmpty(string msg)
+        {
+            // act, assert
+            Assert.That(() => telemetry.Send(msg), Throws.ArgumentNullException);
+        }
+
+        [Test]
+        public void TelemetrySystem_SendMessage_IsTrueOrFalse()
+        {
+            // act
+            var result = telemetry.Send("message");
+
+            // assert
+            Assert.IsInstanceOf<bool>(result);
+        }
+
+        [Test]
+        public void TelemetrySystem_Receive_IsNotNull()
+        {
+            // act
+            var result = telemetry.Receive();
+
+            // assert
+            Assert.IsInstanceOf<string>(result);
+            Assert.IsNotEmpty(result);
         }
     }
 }

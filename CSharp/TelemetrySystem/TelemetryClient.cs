@@ -40,7 +40,7 @@ namespace TDDMicroExercises.TelemetrySystem
             _onlineStatus = false;
         }
 
-        public void Send(string message)
+        public bool Send(string message)
         {
             if (string.IsNullOrEmpty(message))
             {
@@ -57,6 +57,8 @@ namespace TDDMicroExercises.TelemetrySystem
             {
                 _diagnosticMessageJustSent = false;
             }
+
+            return _diagnosticMessageJustSent;
         }
 
         public string Receive()
