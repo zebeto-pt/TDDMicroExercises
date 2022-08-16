@@ -5,7 +5,7 @@ using TDDMicroExercises.TirePressureMonitoringSystem;
 namespace TDDMicroExercises.Tests
 {
     [TestFixture]
-    public class AlarmTests
+    public class TirePressureTests
     {
         private Mock<ISensor> sensor;
         private Alarm alarm;

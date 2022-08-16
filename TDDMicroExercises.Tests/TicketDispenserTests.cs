@@ -9,7 +9,7 @@ using TDDMicroExercises.TurnTicketDispenser;
 namespace TDDMicroExercises.Tests
 {
     [TestFixture]
-    class TicketDispenserTests
+    public class TicketDispenserTests
     {
         [Test]
         public void TicketDispenser_GetOneTicket_ReturnNextNumber()

@@ -6,7 +6,7 @@ namespace TDDMicroExercises.TelemetrySystem
     public class TelemetryDiagnosticControls
     {
         private const string DiagnosticChannelConnectionString = "*111#";
-        
+
         private readonly TelemetryClient _telemetryClient;
         private string _diagnosticInfo = string.Empty;
 
@@ -33,8 +33,8 @@ namespace TDDMicroExercises.TelemetrySystem
                 _telemetryClient.Connect(DiagnosticChannelConnectionString);
                 retryLeft -= 1;
             }
-             
-            if(_telemetryClient.OnlineStatus == false)
+
+            if (_telemetryClient.OnlineStatus == false)
             {
                 throw new Exception("Unable to connect.");
             }
